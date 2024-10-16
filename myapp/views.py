@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Appointments, Providers, Services, ProviderServices
 from django.utils import timezone
 from django.contrib import messages
@@ -13,8 +13,12 @@ def index(request):
 def contact(request):
     return render(request, 'contact.html')
 
+# def service(request):
+#     return render(request, 'service.html')
+
 def service(request):
-    return render(request, 'service.html')
+    services = Services.objects.all()
+    return render(request, 'service.html', {'services': services})
 
 def appointment(request):
     return render(request, 'appointment.html')
@@ -61,3 +65,7 @@ def get_provider_services(request, provider_id):
 
 def test(request):
     return render(request, 'test.html')
+
+def service_detail(request, id):
+    service = get_object_or_404(Services, ServiceID=id)
+    return render(request, 'service_detail.html', {'service': service})

@@ -29,4 +29,5 @@ urlpatterns = [
     path('get_provider_services/<int:provider_id>/', views.get_provider_services, name='get_provider_services'),
     path('create_appointment/', views.create_appointment, name='create_appointment'),
     path('test', views.test, name='test'),
+    path('service/<int:id>/', views.service_detail, name='service_detail'),
 ]

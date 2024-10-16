@@ -155,101 +155,32 @@
             </div>
         </div>
         <!-- Header End -->
- <body>
-  <div class="container mt-3">
-    <div class="row">
-        <div class="col-md-6">
-         <h4>
-          MASSAGE TẠI NHÀ - VÉ NHÂN VIÊN NGẪU NHIÊN
-         </h4>
-         <img alt="Massage service image" class="product-image" height="500" src="https://storage.googleapis.com/a1aa/image/n6EpUtdqWR4ADt2CIffKxNOJE5uaA2TnGzzxkhYwIdfpdcMnA.jpg" width="500"/>
-         <div class="product-thumbnails d-flex">
-          <img alt="Thumbnail 1" class="active" height="100" src="https://storage.googleapis.com/a1aa/image/om6oANRBvoqtK1s2VJ6pde9pt3jhK0bWuMxNNWwsVviYHHzJA.jpg" width="100"/>
-          <img alt="Thumbnail 2" height="100" src="https://storage.googleapis.com/a1aa/image/itxieU8f6gjLw02r7jjQQsbxqPragQzx8hBVCfJAyuundcMnA.jpg" width="100"/>
-          <img alt="Thumbnail 3" height="100" src="https://storage.googleapis.com/a1aa/image/GGfNQZkGAqXe6kygZzC3lCiYnsjlqg4xjj32l3GHkEg3OOmTA.jpg" width="100"/>
-          <img alt="Thumbnail 4" height="100" src="https://storage.googleapis.com/a1aa/image/eMuozgNgtHzRfk33QVh4D5TL1KSkSrVQeE8IKzK7dZfC74YOB.jpg" width="100"/>
-          <img alt="Thumbnail 5" height="100" src="https://storage.googleapis.com/a1aa/image/2LeIoVb9uEwTIawcdy9PzcLPwnEN6mjNzGBbJJAdiATbHHzJA.jpg" width="100"/>
-         </div>
-        </div>
-        <div class="col-md-6">
-            <h5>
-             DỊCH VỤ: DỊCH VỤ MASSAGE TẠI NHÀ VÀ KHÁCH SẠN
-            </h5>
-            <h6>
-             LOẠI VÉ: NHÂN VIÊN NGẪU NHIÊN
-            </h6>
-            <h3 class="text-danger">
-             370.000₫
-            </h3>
-            <p>
-             Giá niêm yết:
-             <del>
-              470.000₫
-             </del>
-            </p>
-            <p class="text-success">
-             Tiết kiệm: 100.000₫ so với giá thị trường
-            </p>
-            <p>
-             Freeship - giá trọn gói (đã bao gồm tip) vui lòng chỉ thanh toán đúng giá vé
-            </p>
-            <div class="mb-3">
-             <button class="btn btn-option" onclick="selectOption(this, 'massage')" type="button">
-              THAILAND MASSAGE
-             </button>
-             <button class="btn btn-option" onclick="selectOption(this, 'massage')" type="button">
-              CAO GIÓ KẾT HỢP XOA BÓP
-             </button>
-             <button class="btn btn-option" onclick="selectOption(this, 'massage')" type="button">
-              THỤY ĐIỂN MASSAGE
-             </button>
-            </div>
-            <h6>
-             THỜI GIAN PHỤC VỤ
-            </h6>
-            <div class="mb-3">
-             <button class="btn btn-option" onclick="selectOption(this, 'time')" type="button">
-              60 phút
-             </button>
-             <button class="btn btn-option" onclick="selectOption(this, 'time')" type="button">
-              75 phút
-             </button>
-             <button class="btn btn-option" onclick="selectOption(this, 'time')" type="button">
-              90 PHÚT
-             </button>
-             <button class="btn btn-option" onclick="selectOption(this, 'time')" type="button">
-              120 phút
-             </button>
-            </div>
-            <h6>
-             KHÔNG GIAN YÊN TĨNH
-            </h6>
-            <div class="mb-3">
-             <button class="btn btn-option" onclick="selectOption(this, 'space')" type="button">
-              Yên lặng tuyệt đối - không làm phiền
-             </button>
-             <button class="btn btn-option" onclick="selectOption(this, 'space')" type="button">
-              Yên lặng bình thường - ít trao đổi
-             </button>
-             <button class="btn btn-option" onclick="selectOption(this, 'space')" type="button">
-              Không gian sôi động
-             </button>
-            </div>
-            <div class="input-group mb-3">
-             <button class="btn btn-outline-secondary" type="button">
-              -
-             </button>
-             <input class="form-control text-center" type="text" value="1"/>
-             <button class="btn btn-outline-secondary" type="button">
-              +
-             </button>
-            </div>
-            <button class="btn btn-red btn-lg w-100">
-             CHỌN
-            </button>
-        </div>
-       </div>
-      </div>
+        <body>
+            <div class="container mt-3">
+              <div class="row">
+                  <div class="col-md-6">
+                   <h4>{{ service.ServiceName }}</h4>
+                   <img alt="Massage service image" class="product-image" height="500" src="https://storage.googleapis.com/a1aa/image/n6EpUtdqWR4ADt2CIffKxNOJE5uaA2TnGzzxkhYwIdfpdcMnA.jpg" width="500"/>
+                   <div class="product-thumbnails d-flex">
+                    <img alt="Thumbnail 1" class="active" height="100" src="https://storage.googleapis.com/a1aa/image/om6oANRBvoqtK1s2VJ6pde9pt3jhK0bWuMxNNWwsVviYHHzJA.jpg" width="100"/>
+                    <!-- Các hình thumbnail khác -->
+                   </div>
+                  </div>
+                  <div class="col-md-6">
+                      <h5>Tên DỊCH VỤ: {{ service.ServiceName }}</h5>
+                      <h6>LOẠI VÉ: NHÂN VIÊN NGẪU NHIÊN</h6>
+                      <h3 class="text-danger">{{ service.Price }}₫</h3>
+                      <p>Giá niêm yết: <del>470.000₫</del></p>
+                      <p class="text-success">Tiết kiệm: 100.000₫ so với giá thị trường</p>
+                      <p>{{ service.Description }}</p>
+                      <h6>THỜI GIAN PHỤC VỤ</h6>
+                      <p>{{ service.Duration }} phút</p>
+                      <button class="btn btn-red btn-lg w-100">CHỌN</button>
+                  </div>
+                 </div>
+                </div>
+
+          
   <script crossorigin="anonymous" integrity="sha384-oBqDVmMz4fnFO9gybBogGzOg6tv6WJo4l8fpcp0GzGIGlKp3T1FNtKp3tBT9MXg7" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js">
   </script>
 
