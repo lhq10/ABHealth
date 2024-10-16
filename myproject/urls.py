@@ -20,10 +20,13 @@ from django.urls import path
 from myapp import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('home', views.index, name='home'),
     path('about', views.about, name='about'),
     path('contact', views.contact, name='contact'),
     path('service', views.service, name='service'),
     path('appointment', views.appointment, name='appointment'),
+    path('get_provider_services/<int:provider_id>/', views.get_provider_services, name='get_provider_services'),
+    path('create_appointment/', views.create_appointment, name='create_appointment'),
+    path('test', views.test, name='test'),
 ]
