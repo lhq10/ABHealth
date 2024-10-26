@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Appointments, Providers, Services, ProviderServices
+from .models import Appointments, Providers, Services, ProviderServices, Users
 from django.utils import timezone
 from django.contrib import messages
 from django.http import JsonResponse
@@ -27,6 +27,29 @@ def about(request):
     providers = Providers.objects.all()  # Lấy tất cả provider từ database
     return render(request, 'about.html', {'providers': providers})
 
+# def create_appointment(request):
+#     if request.method == "POST":
+#         provider_id = request.POST.get('ProviderID')
+#         appointment_date = request.POST.get('AppointmentDate')
+#         selected_services = request.POST.getlist('services')  # Lấy danh sách dịch vụ được chọn
+
+#         provider = Providers.objects.get(pk=provider_id)
+
+#         # Tạo cuộc hẹn cho từng dịch vụ
+#         for service_id in selected_services:
+#             service = Services.objects.get(pk=service_id)
+#             Appointments.objects.create(
+#                 CustomerID=request.user,  # Giả sử hệ thống đăng nhập đã có
+#                 ProviderID=provider,
+#                 ServiceID=service,
+#                 AppointmentDate=appointment_date,
+#                 Status='Pending',
+#             )
+
+#         messages.success(request, 'Lịch hẹn của bạn đã được tạo thành công!')
+#         return redirect('home')
+
+#     return redirect('home')
 def create_appointment(request):
     if request.method == "POST":
         provider_id = request.POST.get('provider_id')
@@ -35,21 +58,28 @@ def create_appointment(request):
 
         provider = Providers.objects.get(pk=provider_id)
 
+        # Kiểm tra nếu chưa có user, dùng tạm CustomerID mặc định
+        if request.user.is_authenticated:
+            customer = request.user
+        else:
+            # Sử dụng ID mặc định cho khách hàng (ví dụ: ID 1), nếu chưa có hệ thống đăng nhập
+            customer = Users.objects.get(pk=12)  # Thay thế ID phù hợp
+
         # Tạo cuộc hẹn cho từng dịch vụ
         for service_id in selected_services:
             service = Services.objects.get(pk=service_id)
             Appointments.objects.create(
-                CustomerID=request.user,  # Giả sử hệ thống đăng nhập đã có
+                CustomerID=customer,  # Sử dụng customer đã xác định
                 ProviderID=provider,
                 ServiceID=service,
                 AppointmentDate=appointment_date,
                 Status='Pending',
             )
 
-        messages.success(request, 'Lịch hẹn của bạn đã được tạo thành công!')
-        return redirect('home')
+        # Hiển thị thông báo thành công
+        return JsonResponse({'success': True, 'message': 'Lịch hẹn của bạn đã được tạo thành công!'})
 
-    return redirect('home')
+    return JsonResponse({'success': False, 'message': 'Đã xảy ra lỗi, vui lòng thử lại!'})
 
 def get_provider_services(request, provider_id):
     provider_services = ProviderServices.objects.filter(ProviderID=provider_id)
